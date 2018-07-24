@@ -1,5 +1,7 @@
 # Custom mongo
-FROM mongo
+FROM registry.access.redhat.com/rhscl/mongodb-36-rhel7
+
+USER root
 
 RUN mkdir -m 777 -p /custom/mongo
 RUN chown mongodb:root /custom/mongo
