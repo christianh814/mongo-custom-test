@@ -1,10 +1,8 @@
 # Custom mongo
 FROM registry.access.redhat.com/rhscl/mongodb-36-rhel7:latest
 
-USER 0
+RUN mkdir -m 777 -p /custom/mongo
+RUN chown mongodb:root /custom/mongo
+RUN cp /etc/mongod.conf /custom/mongo
 
-RUN mkdir /etc/mongo
-RUN chown mongodb:root /etc/mongo
-RUN cp /etc/mongod.conf /etc/mongo
-
-ENTRYPOINT ["mongod -f /etc/mongo/mongod.conf --auth"]
+ENTRYPOINT ["mongod -f /custom/mongo/mongod.conf --auth"]
